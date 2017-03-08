@@ -1,11 +1,11 @@
 <?php
 
   header('Content-Type: application/json; charset=utf-8');
-/*
+
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
-*/
+
 
   $apiUsername = "3726328870";
   $apiPassword = "pNp6TIgVm4viVadoyoUdxbsrfmiBwudN";
@@ -27,25 +27,25 @@
     die();
   }
 
-  $login_curl = curl_init();
-  curl_setopt($login_curl, CURLOPT_URL, 'https://api.freedompop.com/auth/token?username=' . $user . '&password=' . $password . '&grant_type=password');
-  curl_setopt($login_curl, CURLOPT_POST, TRUE);
-  curl_setopt($login_curl, CURLOPT_HTTPHEADER, array(
-    'Authorization: Basic '. base64_encode($apiUsername.':'.$apiPassword)
-  ));
-  curl_setopt($login_curl, CURLOPT_RETURNTRANSFER, true);
-  $login_out = curl_exec($login_curl);
+  $opts = array('http' =>
+      array(
+          'method'  => 'POST',
+          'header'  => 'Authorization: Basic '.base64_encode($apiUsername.':'.$apiPassword)
+      )
+  );
 
-  $jsonAccess = json_decode($login_out, true);
+  $context  = stream_context_create($opts);
+  $result = file_get_contents('https://api.freedompop.com/auth/token?username=' . $user . '&password=' . $password . '&grant_type=password', false, $context);
+
+  $jsonAccess = json_decode($result, true);
+
   if (!isset($jsonAccess['access_token'])) {
     $rtn = array("error" => "user y/o password incorrectos");
     http_response_code(500);
     print json_encode($rtn);
-    curl_close($login_curl);
     die();
   }
   $accessToken = $jsonAccess['access_token'];
-  curl_close($login_curl);
 
 
   $page = file_get_contents('https://api.freedompop.com/user/usage?accessToken=' . $accessToken);
