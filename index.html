@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Freedompop Usage</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="./img/favicon.ico">
+</head>
+<body>
+	<nav class="nav">
+		<div class="container">
+			<a class="pagename current" href="#">Freedompop Usage</a>
+		</div>
+	</nav>
+
+	<div class="spinner hide" id="spinnerDiv"></div>
+
+  <div class="container">
+    <div class="hero hide" id="dataDiv">
+      <div class="row">
+        <h3 id="userName">salvacams@gmail.com</h3>
+				<a class="btn btn-c btn-sm smooth right" href="#" id="logout">Sign out</a>
+				<p>Datos consumidos:<p/>
+				<p><b id="planLimitUsed"></b> MB de <b id="totalLimit"></b> MB (<b id="percentUsed"></b><b>%</b>)</p>
+				<p>Fecha:</p>
+				<p>Desde <b id="startTime"></b> al <b id="endTime"></b></p>
+			</div>
+
+    </div>
+
+		<div class="evil" id="formDiv">
+      <div class="row ">
+          <label for="user">User</label>
+          <input class="right" type="text" placeholder="example@mail.com" id="user">
+			</div>
+			<div class="row">
+          <label for="password">Password</label>
+          <input class="right" type="password" id="password">
+			</div>
+			<a href="#" id="login" class="btn btn-sm btn-b right">Sign in</a>
+		</div>
+  </div>
+
+	<script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+</body>
+</html>
