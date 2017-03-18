@@ -55,7 +55,7 @@
     'startTime' => date('d/m/Y', $usage["startTime"]/1000),
     'endTime' => date('d/m/Y', $usage["endTime"]/1000),
     'planLimitUsed' => round(($usage["planLimitUsed"]/$inMB), 2),
-    'percentUsed' => round($usage["percentUsed"]*100, 2),
+    'percentUsed' => round(($usage["percentUsed"]*100), 2),
     'totalLimit' => round(($usage["totalLimit"]/$inMB), 2)
   );
 
