@@ -56,8 +56,8 @@ let app = {
     var xhr = new XMLHttpRequest();
     xhr.open ("GET", url, true);
     xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.responseText !== "") {
-        //if (xhr.status == 200) {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200 && xhr.responseText !== "") {
           var data = JSON.parse(xhr.responseText);
           spinnerDiv.classList.toggle('hide');
           dataDiv.classList.toggle('hide');
@@ -73,7 +73,7 @@ let app = {
         } else {
           app.fn_errorXHR();
         }
-      //}
+      }
     };
 
     try {

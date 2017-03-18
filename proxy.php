@@ -1,11 +1,12 @@
 <?php
 
   header('Content-Type: application/json; charset=utf-8');
-
+  header("access-control-allow-origin: *");
+/*
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
-
+*/
 
   $apiUsername = "3726328870";
   $apiPassword = "pNp6TIgVm4viVadoyoUdxbsrfmiBwudN";
