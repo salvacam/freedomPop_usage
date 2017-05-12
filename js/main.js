@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 let app = {  
-  URL_PROXY: 'httpa://calcicolous-moonlig.000webhostapp.com/freedomPop_usage/proxy.php',
+  URL_PROXY: 'https://calcicolous-moonlig.000webhostapp.com/freedomPop_usage/proxy.php',
 
   spinnerDiv: document.getElementById('spinnerDiv'),
   dataDiv: document.getElementById('dataDiv'),
