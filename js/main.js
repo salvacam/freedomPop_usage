@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let app = {
   //URL_PROXY: 'https://featherbrained-exec.000webhostapp.com/freedomPop_usage/proxy.php',
-  URL_PROXY: 'https://salvacam.rf.gd/freedomPop_usage/proxy.php',
+  URL_PROXY: 'http://salvacam.rf.gd/freedomPop_usage/proxy.php',
 
   spinnerDiv: document.getElementById('spinnerDiv'),
   dataDiv: document.getElementById('dataDiv'),
