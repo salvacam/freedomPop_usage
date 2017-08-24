@@ -8,7 +8,7 @@ body{min-width: 330px;}
 .hero{background:#eee;padding:20px;border-radius:10px;margin-top:1em;max-width:900px;}
 .hero h3,.hero a{display:inline-block;}
 .right{float:right;}
-.hide{display:none;}
+.hide{display:none !important;}
 .evil{background:#eee;padding:20px;border-radius:10px;margin-top:1em;max-width:350px;min-height:120px;}
 .evil label{margin-top:5px;display:inline-block;width:75px;text-align:right;}
 .evil input{display:inline-block;width:250px;}
