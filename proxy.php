@@ -48,9 +48,7 @@
 
 
   if ($access_token == '') {
-
-
-
+    // Login
     $opts = array('http' =>
         array(
             'method'  => 'POST',
@@ -82,17 +80,47 @@
     }
     $userName = $jsonAccess['email'];
     $access_token = $jsonAccess['access_token'];
-    $expires_in = $jsonAccess['expires_in']; // sumar la hora actual
+    $expires_in = $jsonAccess['expires_in'] + time(); // Añadir la hora actual en segundos
     $refresh_token = $jsonAccess['refresh_token'];
 
   }
 
   //Todo Comprobar que no se ha pasado el tiempo del token
-  /*
-    $expires_in(le he sumado en la salida la hora de cuando se obtuvo) > hora actual 
-      renovar token
-        https://api.freedompop.com/auth/token?refresh_token=$refresh_token&grant_type=refresh_token
-  */
+  if (time() > $expires_in) {
+    // Renovar token
+    $opts = array('http' =>
+        array(
+            'method'  => 'POST',
+            'header'  => 'Authorization: Basic '.base64_encode($apiUsername.':'.$apiPassword)
+        )
+    );
+
+    $context  = stream_context_create($opts);
+    $result = file_get_contents('https://api.freedompop.com/auth/token?refresh_token=' . $refresh_token . '&grant_type=refresh_token', false, $context);
+
+    $jsonAccess = json_decode($result, true);
+
+/*
+{
+    "email": "salvacams@gmail.com",
+    "access_token": "5c78f9cd7cb3caa2504291451e3c9d1",
+    "token_type": "server",
+    "expires_in": 604800,
+    "refresh_token": "852012968f75abe54c3c6a89f13e1b66"
+}
+*/
+
+    if (!isset($jsonAccess['access_token'])) {
+      $rtn = array("error" => "user y/o password incorrectos");
+      http_response_code(500);
+      print json_encode($rtn);
+      die();
+    }
+    $userName = $jsonAccess['email'];
+    $access_token = $jsonAccess['access_token'];
+    $expires_in = $jsonAccess['expires_in'] + time(); // Añadir la hora actual en segundos
+    $refresh_token = $jsonAccess['refresh_token'];    
+  }
 
 
   $page = file_get_contents('https://api.freedompop.com/user/usage?accessToken=' . $access_token);
