@@ -105,15 +105,8 @@ let app = {
     app.formDiv.classList.add('hide');
     app.spinnerDiv.classList.remove('hide');
 
-    try {
-      fetch(url, 
-      {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin':'*'
-        }
-      })
+    
+      fetch(url)
       .then(
         function(response) {
           if (response.status !== 200) {
@@ -141,33 +134,23 @@ let app = {
         //console.log('Fetch Error :-S', err);
         app.showErrorConnection();
       });
-    } catch (err) {
-      app.showErrorConnection();
-    }
   },
 
   getData: function() {
     app.formDiv.classList.add('hide');
     app.spinnerDiv.classList.remove('hide');
 
-    let url = app.URL_PROXY + '?user=' + app.userName; 
+    let url = app.URL_PROXY + '?user=' + app.userName + 
+      "&access_token=" + app.access_token + "&refresh_token=" + app.refresh_token + 
+      "&expires_in=" + app.expires_in; 
 
     let dataSend = new FormData();
     dataSend.append( "access_token", app.access_token );
     dataSend.append( "refresh_token", app.refresh_token );
     dataSend.append( "expires_in", app.expires_in );
 
-    try {
-
-      fetch(url, 
-      {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin':'*'
-        },
-        body: dataSend
-      })
+//    try {
+      fetch(url)
       .then(
         function(response) {
           if (response.status !== 200) {
@@ -196,9 +179,9 @@ let app = {
       .catch(function(err) {
         app.showLastData();
       });
-    } catch (err) {
-      app.showLastData();
-    }
+  //  } catch (err) {
+    //  app.showLastData();
+    //}
   },
 
   logout: function() {
