@@ -68,7 +68,7 @@ let app = {
     }
     //TODO mejorar comprobacion
     if (!app.user || !app.password) {
-      alert('Falta usuario y/o password');
+      app.showModal('Falta usuario y/o password');
       return;
     }
     app.getLogin();
