@@ -24,6 +24,11 @@ let app = {
   startTime: document.getElementById('startTime'),
   endTime: document.getElementById('endTime'),
 
+  myModal: document.getElementById('myModal'),
+  closeModalButton: document.getElementById('close-modal'),
+  modalText: document.getElementById('modal-text'),
+
+  
   access_token: '',
   refresh_token: '',
   expires_in: '',
@@ -34,6 +39,9 @@ let app = {
     app.loginButton.addEventListener('click', app.login);
     app.logoutButton.addEventListener('click', app.logout);
     app.updateButton.addEventListener('click', app.getData);
+
+    app.closeModalButton.addEventListener('click', app.closeModal);
+    
 
     if(localStorage.getItem('_freedompop_usage')) {
       let dataConnection = JSON.parse(localStorage.getItem('_freedompop_usage'));
@@ -83,7 +91,7 @@ let app = {
   },
 
   showLastData: function(){
-    alert("Error conexión, se muestran los últimos datos obtenidos");
+    app.showModal("Error conexión, se muestran los últimos datos obtenidos");    
     let dataConnection = JSON.parse(localStorage.getItem('_freedompop_usage'));
     app.spinnerDiv.classList.add('hide');
     app.dataDiv.classList.remove('hide');
@@ -91,12 +99,20 @@ let app = {
     app.showDataConnection(dataConnection);
   },
 
+  showModal: function(text) {
+    app.modalText.innerHTML = text;
+    app.myModal.style.display = "block";
+  },
+
   showErrorConnection: function() {
-    alert("Error conexión, comprobar usuario y password");
+    app.showModal("Error conexión, comprobar usuario y password");    
     app.formDiv.classList.remove('hide');
     app.spinnerDiv.classList.add('hide');
   },
 
+  closeModal: function() {
+    app.myModal.style.display = "none";
+  },
 
   getLogin: function() {
     var url = app.URL_PROXY + '?user=' + app.user + 
