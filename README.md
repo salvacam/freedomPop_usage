@@ -35,7 +35,7 @@ Nos devuelve los datos de consumo y conexion
 
 Nos devuelve unos datos de conexión
     {
-    "email": "salvacams@gmail.com",
+    "email": "email@doamin.com",
     "access_token": "5c78f9cd7cb3caa2504291451e3c9d1",
     "expires_in": 604800,
     "refresh_token": "852012968f75abe54c3c6a89f13e1b66"
@@ -55,7 +55,7 @@ Primero se realiza el login para obtener el token de conexión, que se guardara 
 
 Nos devuelve unos datos de conexión
 	{
-    "email": "salvacams@gmail.com",
+    "email": "email@doamin.com",
     "access_token": "5c78f9cd7cb3caa2504291451e3c9d1",
     "token_type": "server",
     "expires_in": 604800,
