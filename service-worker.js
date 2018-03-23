@@ -1,12 +1,12 @@
 var cacheName = 'fredompop-v0.1.03';
 
 var filesToCache = [
-  '/',
-  'index.html',
-  'js/main.js',
-  'css/style.css',
+  './',
+  './index.html',
+  './js/main.js',
+  './css/style.css',
   
-  'img/favicon.ico'
+  './img/favicon.ico'
 ];
 
 self.addEventListener('install', function(e) {
