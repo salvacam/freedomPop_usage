@@ -1,4 +1,4 @@
-var cacheName = 'fredompop-v0.1.03';
+var cacheName = 'fredompop-v0.1.04';
 
 var filesToCache = [
   './',
@@ -37,8 +37,8 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
     })
   );
 });
